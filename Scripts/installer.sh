@@ -70,9 +70,9 @@ clone_repository(){
 }
 
 extract_embedded_bitcoin_node(){
-    cd $GIT_FOLDER
-    p "Extract embedded bitcoin node"
-    tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+    cd $GIT_FOLDER/Bin
+    spin_it "Extract embedded bitcoin node" tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+    spin_it "Extract embedded SV2 proxy" tar -xf $EMBEDDED_SV2_PROXY
 }
 
 # Entry point
@@ -89,4 +89,4 @@ install_prerequisites
 check_if_upgrade
 go_to_install_directory
 clone_repository
-
+extract_embedded_bitcoin_node

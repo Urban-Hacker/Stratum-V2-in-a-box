@@ -37,7 +37,8 @@ INSTALLATION_FOLDER="$HOME/stratum_v2"
 GIT_FOLDER="$HOME/stratum_v2/Stratum-V2-in-a-box"
 TMP_DIRECTORY=/tmp/stratum_v2
 ARCHITECTURE=$(uname -m)
-EMBEDDED_BITCOIN_NODE_ARCHIVE="$GIT_FOLDER/Bin/bitcoin-sv2-tp-0.1.2-x86_64-linux-gnu.tar.gz"
+EMBEDDED_BITCOIN_NODE_ARCHIVE=bitcoin-sv2-tp-0.1.2-x86_64-linux-gnu.tar.gz
+EMBEDDED_SV2_PROXY=demand_all_in_one_sv2-x86_64-linux-gnu.tar.gz
 
 rm -fr $TMP_DIRECTORY 2>&1
 mkdir $TMP_DIRECTORY 2>&1
