@@ -1,5 +1,21 @@
-SCRIPT_DIRECTORY="stratum_in_a_box"
-ARCHITECTURE=$(uname -m)
+#!/bin/bash
+
+enum ()
+{
+    # skip index ???
+    shift
+    AA=${@##*\{} # get string strip after { 
+    AA=${AA%\}*} # get string strip before }
+    AA=${AA//,/} # delete commaa  
+    ((DEBUG)) && echo $AA
+    local I=0
+    for A in $AA ; do
+        eval "$A=$I"
+        ((I++))
+    done
+}
+
+enum VERSION_TYPE { STABLE, DEV, DEV_DETACHED, NO_GIT };
 
 VERBOSE=0
 while getopts ":v" option; do
@@ -12,4 +28,23 @@ while getopts ":v" option; do
             exit 1
             ;;
     esac
-done 
+done
+
+shift "$((OPTIND-1))"
+
+LOGS=/dev/null
+INSTALLATION_FOLDER="$HOME/stratum_v2"
+GIT_FOLDER="$HOME/stratum_v2/Stratum-V2-in-a-box"
+TMP_DIRECTORY=/tmp/stratum_v2
+ARCHITECTURE=$(uname -m)
+
+rm -fr $TMP_DIRECTORY 2>&1
+mkdir $TMP_DIRECTORY 2>&1
+
+GIT_URL=https://github.com/Urban-Hacker/Stratum-V2-in-a-box
+
+#if command -v screen >/dev/null 2>&1; then
+#    SESSION_COUNT=$(screen -ls | grep -c "\.shurikenpi.io")
+#else
+#    SESSION_COUNT=0
+#fi
