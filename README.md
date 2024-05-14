@@ -1,7 +1,7 @@
 # Stratum-V2-in-a-box
 Create a stratum V2 mining node
 
-How to run?
+## How to run?
 
 Execute in the following order the commands bellow
 ```
