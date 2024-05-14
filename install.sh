@@ -43,6 +43,9 @@ TMP_DIRECTORY=/tmp/stratum_v2
 ARCHITECTURE=$(uname -m)
 EMBEDDED_BITCOIN_NODE_ARCHIVE=bitcoin-sv2-tp-0.1.2-x86_64-linux-gnu.tar.gz
 EMBEDDED_SV2_PROXY=demand_all_in_one_sv2-x86_64-linux-gnu.tar.gz
+EMBEDDED_SSL_LIB="libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb"
+
+UI_CHECK="\033[32m✓\033[0m"
 
 rm -fr $TMP_DIRECTORY 2>&1
 mkdir $TMP_DIRECTORY 2>&1
@@ -189,11 +192,11 @@ install_prerequisites(){
     echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list >/dev/null
 
     spin_it "Refresh cache..." sudo apt update
-    spin_it "apt install gum                                                           \033[32m✓\033[0m" sudo apt-get install -y gum
-    spin_it "apt install git                                                           \033[32m✓\033[0m" sudo apt-get install -y git
-    spin_it "apt install tor                                                           \033[32m✓\033[0m" sudo apt-get install -y tor
-    spin_it "apt install curl                                                          \033[32m✓\033[0m" sudo apt-get install -y curl
-    spin_it "apt install screen                                                        \033[32m✓\033[0m" sudo apt-get install -y screen
+    spin_it "apt install gum                                                           $UI_CHECK" sudo apt-get install -y gum
+    spin_it "apt install git                                                           $UI_CHECK" sudo apt-get install -y git
+    spin_it "apt install tor                                                           $UI_CHECK" sudo apt-get install -y tor
+    spin_it "apt install curl                                                          $UI_CHECK" sudo apt-get install -y curl
+    spin_it "apt install screen                                                        $UI_CHECK" sudo apt-get install -y screen
 }
 
 check_if_upgrade(){
@@ -227,13 +230,17 @@ go_to_install_directory(){
 }
 
 clone_repository(){
-    spin_it "Downloading Stratum V2 [in a box], please wait..." git clone $GIT_URL
+    spin_it "Downloading Stratum V2 [in a box], please wait...                         $UI_CHECK" git clone $GIT_URL
 }
 
 extract_embedded_bitcoin_node(){
     cd $GIT_FOLDER/Bin
-    spin_it "Extract embedded bitcoin node" tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
-    spin_it "Extract embedded SV2 proxy" tar -xf $EMBEDDED_SV2_PROXY
+    spin_it "Extract embedded bitcoin node                                             $UI_CHECK" tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+    spin_it "Extract embedded SV2 proxy                                                $UI_CHECK" tar -xf $EMBEDDED_SV2_PROXY
+}
+
+install_lib_ssl_for_compatibility(){
+    spin_it "Install SSL library " sudo dpkg -i $EMBEDDED_SSL_LIB
 }
 
 # Entry point

@@ -39,6 +39,9 @@ TMP_DIRECTORY=/tmp/stratum_v2
 ARCHITECTURE=$(uname -m)
 EMBEDDED_BITCOIN_NODE_ARCHIVE=bitcoin-sv2-tp-0.1.2-x86_64-linux-gnu.tar.gz
 EMBEDDED_SV2_PROXY=demand_all_in_one_sv2-x86_64-linux-gnu.tar.gz
+EMBEDDED_SSL_LIB="libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb"
+
+UI_CHECK="\033[32m✓\033[0m"
 
 rm -fr $TMP_DIRECTORY 2>&1
 mkdir $TMP_DIRECTORY 2>&1
