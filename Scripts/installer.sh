@@ -69,6 +69,11 @@ clone_repository(){
     spin_it "Downloading Stratum V2 [in a box], please wait..." git clone $GIT_URL
 }
 
+extract_embedded_bitcoin_node(){
+    cd $GIT_FOLDER
+    p "Extract embedded bitcoin node"
+    tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+}
 
 # Entry point
 echo ""
@@ -84,3 +89,4 @@ install_prerequisites
 check_if_upgrade
 go_to_install_directory
 clone_repository
+

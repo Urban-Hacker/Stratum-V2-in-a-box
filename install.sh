@@ -41,6 +41,7 @@ INSTALLATION_FOLDER="$HOME/stratum_v2"
 GIT_FOLDER="$HOME/stratum_v2/Stratum-V2-in-a-box"
 TMP_DIRECTORY=/tmp/stratum_v2
 ARCHITECTURE=$(uname -m)
+EMBEDDED_BITCOIN_NODE_ARCHIVE="$GIT_FOLDER/Bin/bitcoin-sv2-tp-0.1.2-x86_64-linux-gnu.tar.gz"
 
 rm -fr $TMP_DIRECTORY 2>&1
 mkdir $TMP_DIRECTORY 2>&1
@@ -210,7 +211,7 @@ go_to_install_directory(){
     p "Install directory will be: $INSTALLATION_FOLDER"
     if [ -d $INSTALLATION_FOLDER ]; then
         echo ""
-        p_warn "An existing installation of Stratum V2 [in a box] was detected!"
+        p_warn "An existing installation was detected!"
         ask_yes_or_no "Would you like to re-install Stratum V2 [in a box] and wipe the existing installation?"
         local result=$?
         if [ $result == 0 ]; then
@@ -228,6 +229,11 @@ clone_repository(){
     spin_it "Downloading Stratum V2 [in a box], please wait..." git clone $GIT_URL
 }
 
+extract_embedded_bitcoin_node(){
+    cd $GIT_FOLDER
+    p "Extract embedded bitcoin node"
+    tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+}
 
 # Entry point
 echo ""
@@ -243,3 +249,4 @@ install_prerequisites
 check_if_upgrade
 go_to_install_directory
 clone_repository
+
