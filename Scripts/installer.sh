@@ -52,7 +52,8 @@ go_to_install_directory(){
     if [ -d $INSTALLATION_FOLDER ]; then
         echo ""
         p_warn "An existing installation was detected!"
-        ask_yes_or_no "Would you like to re-install Stratum V2 [in a box] and wipe the existing installation?"
+        p_warn "Would you like to re-install Stratum V2 [in a box]?"
+        ask_yes_or_no "This will wipe the existing installation!"
         local result=$?
         if [ $result == 0 ]; then
             rm -fr $INSTALLATION_FOLDER
@@ -76,6 +77,8 @@ extract_embedded_bitcoin_node(){
 }
 
 install_lib_ssl_for_compatibility(){
+    cd $GIT_FOLDER/Bin
+    ls
     spin_it "Install SSL library " sudo dpkg -i $EMBEDDED_SSL_LIB
 }
 
@@ -94,3 +97,4 @@ check_if_upgrade
 go_to_install_directory
 clone_repository
 extract_embedded_bitcoin_node
+install_lib_ssl_for_compatibility
