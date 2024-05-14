@@ -48,8 +48,14 @@ mkdir $TMP_DIRECTORY 2>&1
 
 GIT_URL=https://github.com/Urban-Hacker/Stratum-V2-in-a-box
 
-#if command -v screen >/dev/null 2>&1; then
-#    SESSION_COUNT=$(screen -ls | grep -c "\.shurikenpi.io")
-#else
-#    SESSION_COUNT=0
-#fi
+if command -v screen >/dev/null 2>&1; then
+    SESSION_BITCOIN_COUNT=$(screen -ls | grep -c "\.stratum_bitcoin_node")
+else
+    SESSION_BITCOIN_COUNT=0
+fi
+
+if command -v screen >/dev/null 2>&1; then
+    SESSION_PROXY_COUNT=$(screen -ls | grep -c "\.stratum_proxy_node")
+else
+    SESSION_PROXY_COUNT=0
+fi
