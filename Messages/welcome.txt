@@ -1,0 +1,7 @@
+   STRATUM V2 [in a box]
+   ----
+   This will install everything required to run a stratum V2 node
+   This assume you have the following requirement
+   * This computer is using an Intel / AMD 64 bits CPU
+   * This computer is running Ubuntu or one of the derivative (Xubuntu, etc)
+   * You must have at least 50 GB of free space on your SSD

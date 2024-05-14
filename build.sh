@@ -2,19 +2,20 @@
 
 build_installer(){
     # Header
-    echo "#!/bin/bash" > install.sh
-    echo "# File generated automatically by build.sh. Do not modify" >> install.sh
-    echo "# DO NOT MODIFY" >> install.sh
-    echo "" >> install.sh
+    INSTALLER="./install.sh"
+    echo "#!/bin/bash" > $INSTALLER
+    echo "# File generated automatically by build.sh. Do not modify" >> $INSTALLER
+    echo "# DO NOT MODIFY" >> $INSTALLER
+    echo "" >> $INSTALLER
 
-    #cat Scripts/global.sh >> install.sh
-    #echo -e "\n\n" >> install.sh
-    cat Scripts/utils.sh >> install.sh
-    echo -e "\n\n" >> install.sh
-    cat Scripts/installer.sh >> install.sh
-    chmod +x install.sh
+    cat Scripts/global.sh >> $INSTALLER
+    echo -e "\n\n" >> $INSTALLER
+    cat Scripts/utils.sh >> $INSTALLER
+    echo -e "\n\n" >> $INSTALLER
+    cat Scripts/installer.sh >> $INSTALLER
+    chmod +x $INSTALLER
 }
 
-echo -e "Script to build Shuriken"
+#echo -e "Script to build Stratum V2 in a box!"
 build_installer
-echo "Finished"
+#echo "Finished"
