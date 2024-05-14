@@ -35,6 +35,40 @@ install_prerequisites(){
     spin_it "apt install screen                                                        \033[32m✓\033[0m" sudo apt-get install -y screen
 }
 
+check_if_upgrade(){
+
+    UPGRADABLE_COUNT=$(apt list --upgradable 2>$LOGS| grep -c ^)
+    if (( UPGRADABLE_COUNT > 0 )); then
+        p_warn "There are $UPGRADABLE_COUNT packages that can be upgraded."
+        p_warn "It is recommended to run 'sudo apt upgrade' afterwards."
+    else
+        p "All packages are up to date."
+    fi
+}
+
+go_to_install_directory(){
+    echo ""
+    p "Install directory will be: $INSTALLATION_FOLDER"
+    if [ -d $INSTALLATION_FOLDER ]; then
+        echo ""
+        p_warn "An existing installation was detected!"
+        ask_yes_or_no "Would you like to re-install Stratum V2 [in a box] and wipe the existing installation?"
+        local result=$?
+        if [ $result == 0 ]; then
+            rm -fr $INSTALLATION_FOLDER
+        else
+            p_err "Fatal: Aborting the installation script now"
+            exit 1
+        fi
+    fi
+    mkdir $INSTALLATION_FOLDER
+    cd $INSTALLATION_FOLDER
+}
+
+clone_repository(){
+    spin_it "Downloading Stratum V2 [in a box], please wait..." git clone $GIT_URL
+}
+
 
 # Entry point
 echo ""
@@ -47,3 +81,6 @@ fi
 p_ok "Your device is using $ARCHITECTURE"
 
 install_prerequisites
+check_if_upgrade
+go_to_install_directory
+clone_repository

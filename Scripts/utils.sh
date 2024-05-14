@@ -52,7 +52,7 @@ msg() {
 
 ask_yes_or_no(){
     echo -e "  \033[33m?\033[0m $1"
-    local result=$(gum choose --cursor=  ›   Yes No)
+    local result=$(gum choose --cursor=" › " "Yes" "No")
     if [[ $result == "Yes" ]]; then
         p_user "Yes"
         return 0
