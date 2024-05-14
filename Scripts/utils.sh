@@ -94,7 +94,7 @@ spin_it(){
         exit 1
     fi
     if [ $VERBOSE -eq 1 ]; then
-        awk '{print "  ‣ " $0}' $logfile
+        awk '{print "\033[1;30m  ‣ " $0 "\033[0m"}' $logfile
         echo ""
     fi
 }

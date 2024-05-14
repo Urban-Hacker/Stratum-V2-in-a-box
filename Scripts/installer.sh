@@ -78,8 +78,7 @@ extract_embedded_bitcoin_node(){
 
 install_lib_ssl_for_compatibility(){
     cd $GIT_FOLDER/Bin
-    ls
-    spin_it "Install SSL library " sudo dpkg -i $EMBEDDED_SSL_LIB
+    spin_it "Install SSL library                                                       $UI_CHECK" sudo dpkg -i $EMBEDDED_SSL_LIB
 }
 
 # Entry point
@@ -98,3 +97,5 @@ go_to_install_directory
 clone_repository
 extract_embedded_bitcoin_node
 install_lib_ssl_for_compatibility
+echo ""
+p_ok "Installation finished!"
