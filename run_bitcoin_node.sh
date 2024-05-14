@@ -7,7 +7,7 @@ shift
 
 start_node(){
     if [ $SESSION_BITCOIN_COUNT -eq 0 ]; then
-        p "Starting up bitcoin deamon..."
+        p "Setting up bitcoin deamon..."
         screen -d -m -c Configurations/screen.screenrc -S "stratum_bitcoin_node" Bin/bitcoin-sv2-tp-0.1.2/bin/bitcoind -sv2 -sv2port=8442 -prune=1092
         sleep 1
         p "Starting in 3"
@@ -16,7 +16,6 @@ start_node(){
         sleep 1
         p "Starting in 1"
         sleep 1
-        status_node
     elif [ $SESSION_BITCOIN_COUNT -eq 1 ]; then
         p "bitcoin deamon is already running"
     else
