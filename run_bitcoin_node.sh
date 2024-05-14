@@ -36,6 +36,7 @@ stop_node(){
     elif [ $SESSION_BITCOIN_COUNT -eq 1 ]; then
         p "We will stop the bitcoin deamon..."
         screen -X -S stratum_bitcoin_node quit
+        killall bitcoind
     else
         status_node
     fi
