@@ -70,12 +70,6 @@ clone_repository(){
     spin_it "Downloading Stratum V2 [in a box], please wait...                         $UI_CHECK" git clone $GIT_URL
 }
 
-extract_embedded_bitcoin_node(){
-    cd $GIT_FOLDER/Bin
-    spin_it "Extract embedded bitcoin node                                             $UI_CHECK" tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
-    spin_it "Extract embedded SV2 proxy                                                $UI_CHECK" tar -xf $EMBEDDED_SV2_PROXY
-}
-
 install_lib_ssl_for_compatibility(){
     cd $GIT_FOLDER/Bin
     spin_it "Install SSL library                                                       $UI_CHECK" sudo dpkg -i $EMBEDDED_SSL_LIB
