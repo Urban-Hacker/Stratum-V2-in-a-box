@@ -98,3 +98,9 @@ spin_it(){
         echo ""
     fi
 }
+
+extract_embedded_bitcoin_node(){
+    cd $GIT_FOLDER/Bin
+    spin_it "Extract embedded bitcoin node                                             $UI_CHECK" tar -xf $EMBEDDED_BITCOIN_NODE_ARCHIVE
+    spin_it "Extract embedded SV2 proxy                                                $UI_CHECK" tar -xf $EMBEDDED_SV2_PROXY
+}
